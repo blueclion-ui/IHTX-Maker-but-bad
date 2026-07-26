@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Image Effect Stack</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app">
+        <div class="sidebar">
+            <div class="library">
+                <h3>Effect Library</h3>
+                <div class="library-items">
+                    <button id="download-btn" class="lib-btn download-btn">Download Image</button>
+                    <div style="display:flex; gap:8px; align-items:center;">
+                        <button id="music-btn" class="lib-btn music-btn">Play Music</button>
+                        <label style="display:flex; align-items:center; gap:6px; margin-left:6px; font-size:0.85rem; color:#ddd;">
+                            <input id="audio-toggle" type="checkbox" checked style="width:16px;height:16px;">
+                            Audio
+                        </label>
+                    </div>
+
+                    <!-- Video export controls -->
+                    <div style="grid-column: span 2; display:flex; gap:6px; align-items:center;">
+                        <input id="segment-length" type="number" min="0.05" step="0.01" value="0.4" style="width:72px; padding:6px; border-radius:4px; border:1px solid #555; background:#222; color:#fff;" title="Seconds per segment">
+                        <input id="max-repeats" type="number" min="1" step="1" value="10" style="width:72px; padding:6px; border-radius:4px; border:1px solid #555; background:#222; color:#fff;" title="Max repeats">
+                        <input id="pitches-input" type="text" value="-12,0,12" title="Comma-separated semitone offsets (e.g. -12,0,12)" style="width:120px; padding:6px; border-radius:4px; border:1px solid #555; background:#222; color:#fff;">
+                        <button id="download-video-btn" class="lib-btn" style="flex:1; background:#17c37a;">Download Video</button>
+                        <button id="preview-ihtx-btn" class="lib-btn" style="flex:1; background:#ffc107; color:#000; font-weight:600;">Preview IHTX</button>
+                    </div>
+
+                    <input id="file-input" type="file" accept="image/*,video/*" style="display:none">
+                    <div style="display:flex; gap:8px; grid-column: span 2;">
+                        <button id="revert-btn" class="lib-btn" style="background:#555; flex:1;">Use Original</button>
+                        <button id="upload-btn" class="lib-btn" style="background:#17a2b8; flex:1;">Upload Image/Video</button>
+                    </div>
+
+                    <!-- core effects -->
+                    <button class="lib-btn" data-type="swirl">Add Swirl</button>
+                    <button class="lib-btn" data-type="hue">Add Hue Shift</button>
+                    <button class="lib-btn" data-type="hueLum">Add Hue (Lum)</button>
+                    <button class="lib-btn" data-type="waviness">Add Waviness</button>
+                    <button class="lib-btn" data-type="flip">Add Flip</button>
+                    <button class="lib-btn" data-type="mirror">Add AVS Mirror</button>
+                    <button class="lib-btn" data-type="standardMirror">Add Standard Mirror</button>
+                    <button class="lib-btn" data-type="sphere">Add Sphere</button>
+                    <button class="lib-btn" data-type="zoomPan">Add Zoom/Pan</button>
+                    <button class="lib-btn" data-type="rotate">Add Rotate</button>
+                    <button class="lib-btn" data-type="invert">Add Invert RGB</button>
+                    <button class="lib-btn" data-type="bgr">Add RGB to BGR</button>
+                    <button class="lib-btn" data-type="ripple">Add Ripple</button>
+                    <button class="lib-btn" data-type="gradientMap">Add Grad Map</button>
+                    <button class="lib-btn" data-type="darkness">Add Darkness</button>
+                    <button class="lib-btn" data-type="bit3">Add 3-Bit RGB</button>
+                    <button class="lib-btn" data-type="bit6">Add 6-Bit RGB</button>
+                    <button class="lib-btn" data-type="saturation">Add Saturation</button>
+                    <button class="lib-btn" data-type="mosaic">Add Mosaic</button>
+                    <button class="lib-btn" data-type="advInvert">Add Adv. Invert</button>
+                    <button class="lib-btn" data-type="hslMap">Add HSL Map</button>
+                    <button class="lib-btn" data-type="animatedWave">Add Animated Wave</button>
+                    <button class="lib-btn" data-type="rgbCurve">Add RGB Curves</button>
+
+                    <!-- new effects -->
+                    <button class="lib-btn" data-type="shake">Add Shake</button>
+                    <button class="lib-btn" data-type="chromatic">Add Chromatic Aberration</button>
+                    <button class="lib-btn" data-type="vignette">Add Vignette</button>
+                    <button class="lib-btn" data-type="glitch">Add Glitch</button>
+
+                    <!-- utility -->
+                    <button id="clear-effects-btn" class="lib-btn" style="background:#ff4d4d; grid-column: span 2;">Clear Effects</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="canvas-container">
+            <canvas id="gl-canvas"></canvas>
+        </div>
+
+        <div class="active-stack-container right-panel">
+            <h3>Active Effects</h3>
+            <div id="active-stack" class="active-stack">
+                <!-- Dynamic effect cards will be inserted here -->
+            </div>
+        </div>
+    </div>
+    <script type="module" src="main.js"></script>
+</body>
+</html>
